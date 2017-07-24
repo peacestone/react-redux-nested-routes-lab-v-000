@@ -12,9 +12,17 @@ class PetsPage extends Component {
     this.props.fetchPets();
   }
 
+
   render() {
+    //let petsJSX = this.props.pets.map((pet, index) => <li key={index}>{pet.name}</li>)
     return (
-      <div>Pets Page</div>
+      <div>
+      <PetsList pets={this.props.pets} />
+          <Switch>
+          <Route path={`${this.props.match.url}/new`} component={PetsNew} />
+            <Route path={`${this.props.match.url}/:petId`} component={PetsShow} />
+          </Switch>
+      </div>
     )
   }
 };

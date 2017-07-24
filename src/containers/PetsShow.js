@@ -1,16 +1,29 @@
 import React from 'react';
 import { connect } from 'react-redux';
 
-const PetsShow = ({ pet }) => 
-  <div className="col-md-8">
+const PetsShow = ({ pet }) =>
+
+    <div className="col-md-8">
     <h2>{pet.name}</h2>
     <p>{pet.description}</p>
-  </div>;
+
+  </div>
+;
 
 const mapStateToProps = (state, ownProps) => {
-  return {
-    pet: {}
-  };
-};
+
+  let pet = state.pets.find(pet =>{
+   return pet.id == ownProps.match.params.petId} )
+  if (pet) {
+  return {pet: pet};
+    }
+    else {
+      return { pet: {} }
+    }
+
+
+
+ }
+
 
 export default connect(mapStateToProps)(PetsShow);
